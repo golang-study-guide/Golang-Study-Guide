@@ -12,6 +12,7 @@ yum install -y vim
 yum install -y bash-completion 
 yum install -y man-pages
 yum install -y git
+yum install -y tree 
 yum install -y bash-completion-extras
 
 
