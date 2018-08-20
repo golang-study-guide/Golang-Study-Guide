@@ -23,6 +23,9 @@ mkdir /root/go_workspaces
 cd /root/go_workspaces
 
 git clone https://github.com/mmcgrana/gobyexample.git
+cp /root/go_workspaces/gobyexample/public/index.html /tmp/
+
+
 
 cd /root/go_workspaces/gobyexample
 mv /root/go_workspaces/gobyexample/examples /root/go_workspaces/
