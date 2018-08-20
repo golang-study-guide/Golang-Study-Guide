@@ -1,2 +1,30 @@
-export GOPATH=/root/go_project
+echo "Please select which Golang workspace you want to work with:"
+echo ""
+echo ""
+echo ""
+
+
+echo ""
+echo ""
+echo ""
+go_workspace_candidate=''
+counter=1
+for go_workspace_candidate in $( ls -lrt /root/go_workspaces ); do
+  echo "           ${counter}) $go_version_candidate"
+  ((counter=counter+1))
+done
+
+
+read go_workspace_number
+
+
+  go_workspace_name=$(ls -rt /root/go_workspaces | sed -n -e ${go_workspace_number}p)
+
+
+echo ""
+echo ""
+echo ""
+export GOPATH=/root/go_workspaces/${go_workspace_name}
 export GOBIN="$GOPATH/bin"
+echo "GOPATH now set to: $(go env GOPATH)"
+echo "GOBIN now set to: $(go env GOBIN)"

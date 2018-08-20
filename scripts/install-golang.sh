@@ -15,10 +15,23 @@ cp -rfp /usr/local/go/bin/* /usr/bin/
 
 
 
-echo "export GOPATH=/root/go_project" > /root/.go_config
-echo "export GOBIN="${GOPATH}/bin"" >> /root/.go_config
 
 echo "source /root/.go_config" >> /root/.bash_profile
+
+
+mkdir /root/go_workspaces
+cd /root/go_workspaces
+
+git clone https://github.com/mmcgrana/gobyexample.git
+
+cd /root/go_workspaces/gobyexample
+mv /root/go_workspaces/gobyexample/examples /root/go_workspaces/
+rm -rf /root/go_workspaces/gobyexample/*
+mv /root/go_workspaces/examples /root/go_workspaces/gobyexample/src
+mkdir /root/go_workspaces/gobyexample/{bin,pkg}
+cd /root/go_workspaces/gobyexample/src
+rm -rf */*.hash */*.sh
+
 
 
 
