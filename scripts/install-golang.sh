@@ -35,9 +35,6 @@ mkdir /root/go_workspaces/gobyexample/{bin,pkg}
 cd /root/go_workspaces/gobyexample/src
 rm -rf */*.hash */*.sh
 
-cat /tmp/index.html | grep '<li>.*</li>' | grep -o 'href=".*"' | cut -d'"' -f2 | grep -n hello-world | cut -d':' -f1
-
-order_number=printf '%02d' $(cat /tmp/index.html | grep '<li>.*</li>' | grep -o 'href=".*"' | cut -d'"' -f2 | grep -n hello-world | cut -d':' -f1)
 
 for folder in $(ls /root/go_workspaces/gobyexample/src); do
   order_number=''
