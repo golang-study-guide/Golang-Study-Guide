@@ -1,27 +1,22 @@
 echo "Please select which Golang workspace you want to work with:"
 echo ""
 echo ""
-echo ""
-
-
-echo ""
-echo ""
-echo ""
 go_workspace_candidate=''
 counter=1
-for go_workspace_candidate in $( ls -lrt /root/go_workspaces ); do
-  echo "           ${counter}) $go_version_candidate"
+for go_workspace_candidate in $(ls -lrt /root/go_workspaces | grep "^d" | awk '{print $NF}'); do
+  echo "           ${counter}) $go_workspace_candidate"
   ((counter=counter+1))
 done
+echo ""
+echo ""
 
-
+echo -n "Please select which workspace you want to use: ";
 read go_workspace_number
 
 
   go_workspace_name=$(ls -rt /root/go_workspaces | sed -n -e ${go_workspace_number}p)
 
 
-echo ""
 echo ""
 echo ""
 export GOPATH=/root/go_workspaces/${go_workspace_name}
