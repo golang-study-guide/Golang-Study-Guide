@@ -43,5 +43,6 @@ Vagrant.configure(2) do |config|
 
     box1_config.vm.provision "shell", path: "scripts/install-rpms.sh", privileged: true
     box1_config.vm.provision "shell", path: "scripts/install-golang.sh", privileged: true
+    box1_config.vm.provision "file", path: "files/.go_config", privileged: true
   end
 end

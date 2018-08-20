@@ -1,0 +1,2 @@
+export GOPATH=/root/go_project
+export GOBIN="$GOPATH/bin"
