@@ -12,3 +12,5 @@ curl -o ${golang_archive_filename} https://dl.google.com/go/${golang_archive_fil
 tar -C /usr/local -xzf ${golang_archive_filename}
 cd /usr/local/go/bin 
 cp -rfp /usr/local/go/bin/* /usr/bin/
+
+exit 
