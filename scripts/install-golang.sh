@@ -14,7 +14,7 @@ cd /usr/local/go/bin
 cp -rfp /usr/local/go/bin/* /usr/bin/
 
 
-
+cp -f /vagrant/files/.go_config /root/
 
 echo "source /root/.go_config" >> /root/.bash_profile
 
