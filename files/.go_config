@@ -23,3 +23,4 @@ export GOPATH=/root/go_workspaces/${go_workspace_name}
 export GOBIN="$GOPATH/bin"
 echo "GOPATH now set to: $(go env GOPATH)"
 echo "GOBIN now set to: $(go env GOBIN)"
+cd /root/go_workspaces/${go_workspace_name}/src
