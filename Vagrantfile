@@ -30,7 +30,7 @@ ensure_plugins required_plugins
 
 Vagrant.configure(2) do |config|
   config.vm.define "golang-box" do |box1_config|
-    box1_config.vm.box = "bento/centos-7.5"
+    box1_config.vm.box = "bento/centos-7.6"
     box1_config.vm.hostname = "box1.local"
     box1_config.vm.network "private_network", ip: "10.0.8.11", :netmask => "255.255.255.0"
 
