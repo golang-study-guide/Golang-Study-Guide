@@ -1,0 +1,4 @@
+[submodule "Section-01/04-setup-a-module/my_go_app1"]
+	path = Section-01/04-setup-a-module/my_go_app1
+	url = https://github.com/Sher-Chowdhury/my_go_app1
+	ignore = all

@@ -1,8 +1,70 @@
-Before you can start writing Golang code. You first need to set up a Workspace. A workspace is just a folder that will store all your Golang related stuff. In my case I'll create a workspace called 'go_project':
+Before you can start writing Golang code. You first need to set up a module. A module is just a folder that will store all your go project's source code. In my case I'll create a workspace called 'my_go_app1':
 
-<pre>
-$ mkdir /root/go_project
-</pre>
+
+Create a new git repo and clone. In my case i created and cloned:
+
+```bash
+git clone github.com/Sher-Chowdhury/my_go_app1
+```
+
+
+run the Go module initialisation command inside this repo:
+
+
+```bash
+$ go mod init github.com/Sher-Chowdhury/my_go_app1
+go: creating new go.mod: module github.com/Sher-Chowdhury/my_go_app1
+```
+
+Here I created a module, using the github repo's url as it's name. 
+
+This ends up creating the file:
+
+```bash
+$ cat go.mod 
+module github.com/Sher-Chowdhury/my_go_app1
+
+go 1.12
+```
+
+Then I created a file called main.go:
+
+```bash
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	fmt.Println("hello world")
+}
+```
+
+Now you can run this code a:
+
+```bash
+$ go run github.com/Sher-Chowdhury/my_go_app1
+hello world
+```
+
+Now if you want to run this module in anther workstation, then i first need to commit and push this to github, and onother workstation, I just have to run:
+
+```bash
+$ go get github.com/Sher-Chowdhury/my_go_app1
+$ go run github.com/Sher-Chowdhury/my_go_app1
+hello world
+```
+
+That's why it's important to name your module after your github repo's url. 
+
+
+
+
+
+
+
+
 
 A workspace needs to have 3 top level folders called <code>pkg</code>, <code>bin</code>, and <code>src</code>: 
 
