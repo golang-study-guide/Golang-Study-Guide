@@ -12,8 +12,8 @@ go run .
 Or:
 
 ```bash
-$ go get github.com/Sher-Chowdhury/gsg_package_level_variables
-$ go run github.com/Sher-Chowdhury/gsg_package_level_variables
+go get github.com/Sher-Chowdhury/gsg_package_level_variables
+go run github.com/Sher-Chowdhury/gsg_package_level_variables
 ```
 
 If you're running the `go get ...` command for the first time on you're workstation, then it ends up creating the following folder:
