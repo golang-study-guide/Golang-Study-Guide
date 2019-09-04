@@ -45,6 +45,8 @@ $ tree ~/go
 5 directories, 14 files
 ```
 
+
+
 Here we can see that the src code has been downloaded and a binary was automatically compiled from the source code. the `go run ...` then executes that binary. Alternatively you can run this binary directly by adding the bin folder to the PATH env variable:
 
 ```
