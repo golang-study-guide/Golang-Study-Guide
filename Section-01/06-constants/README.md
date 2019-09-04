@@ -1,19 +1,19 @@
-To understand how to write and use variables, take a look at the example code in [this repo](https://github.com/Sher-Chowdhury/gsg_pointers_datatype)
+To understand how to write and use variables, take a look at the example code in the [gsg_constants](https://github.com/Sher-Chowdhury/gsg_constants)
 
 There's 2 ways to run the code in this repo:
 
 
 ```bash
-git clone https://github.com/Sher-Chowdhury/gsg_pointers_datatype
-cd gsg_pointers_datatype
+git clone https://github.com/Sher-Chowdhury/gsg_constants.git
+cd gsg_constants
 go run .
 ```
 
 Or:
 
 ```bash
-go get github.com/Sher-Chowdhury/gsg_pointers_datatype
-go run github.com/Sher-Chowdhury/gsg_pointers_datatype
+go get github.com/Sher-Chowdhury/gsg_constants
+go run github.com/Sher-Chowdhury/gsg_constants
 ```
 
 If you're running the `go get ...` command for the first time on you're workstation, then it ends up creating the `~/go` folder, and it then populates it:
@@ -23,11 +23,11 @@ $ cd ~/go
 $ tree ~/go
 /Users/sherchowdhury/go
 ├── bin
-│   └── gsg_package_level_variables
+│   └── gsg_constants
 └── src
     └── github.com
         └── Sher-Chowdhury
-            └── gsg_package_level_variables
+            └── gsg_constants
                 ├── 01_initialised_only.go
                 ├── 02_initialised_only_alternate_syntax.go
                 ├── 03_initialised_only_alternate_syntax.go
@@ -51,7 +51,7 @@ Here we can see that the src code has been downloaded and a binary was automatic
 
 ```
 $ PATH=$PATH:~/go/bin
-$ gsg_package_level_variables
+$ gsg_constants
 EG1 - Initialised only
 'name' is set to:
 'city' is set to:
