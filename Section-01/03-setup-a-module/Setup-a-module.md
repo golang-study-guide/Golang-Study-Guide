@@ -29,7 +29,7 @@ module github.com/Sher-Chowdhury/gsg_hello_world
 go 1.12
 ```
 
-Then I created a file called main.go:
+Then I created a file called "main.go":
 
 ```go
 package main
@@ -43,12 +43,25 @@ func main() {
 }
 ```
 
+This file is our entry-point-file, for our executable program. It's best practice to name our entry-point-file, main.go. However the main.go file can get quite big, in which case you can break down the main.go into multiple smaller *.go files. In this scenario, the entry-point-file is the *.go file that contains the "func main()" function. By convention you can name this entry-point-file as:
+
+- main.go
+- you-golang-package-name.go, e.g. if your project creates a executable file called 'terraform', then this file is called terraform.go. In other word's it needs to match the repo name, e.g. if you're repo is https://github.com/Sher-Chowdhury/gsg_hello_world, then you should call it gsg_hello_world.go. 
+
+
+
+. However all these new smaller *.go files needs to start with 'package main' as the [package declaration](https://golang.org/doc/code.html#PackageNames) so that golang still knows that they are part of the main package.   
+
+
 Now you can run this code using the 'go run' command:
 
 ```bash
 $ go run github.com/Sher-Chowdhury/gsg_hello_world
 hello world
 ```
+
+the [go run](https://golang.org/pkg/cmd/go/internal/run/) command specificially loads and runs all *.go files that have the first line set to  'package main'. Once all the 'package main' files are collated, `go run` then looks for the 'func main()' function which is the starting point of your code. 
+
 
 Now if you want to run this module on another workstation, then you first need to commit and push this to github, and on another workstation, you just have to run:
 
