@@ -88,6 +88,15 @@ func main() {
 		FirstName: "Jack",
 		Lastname:  "Bauer",
 	}
+
+    // now we add the objects to our array. 
+	myEmployees = append(myEmployees, &james)
+	myEmployees = append(myEmployees, &jack)
+
+	fmt.Println(myEmployees)     // prints [0x446280 0x4462a0] // i.e. an array of memory pointers
+	fmt.Println(*myEmployees[0]) // prints {0  }
+	fmt.Println(*myEmployees[1]) // {23 Jack Baur}
+}
 ```
 
 This outputs:
@@ -98,3 +107,5 @@ This outputs:
 {0  }
 {23 Jack Bauer}
 ```
+
+Here's another example: [https://github.com/Sher-Chowdhury/gsg_slices_pointers_structs_demo](https://github.com/Sher-Chowdhury/gsg_slices_pointers_structs_demo)
