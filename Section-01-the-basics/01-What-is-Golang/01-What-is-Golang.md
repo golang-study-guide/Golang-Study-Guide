@@ -21,6 +21,8 @@ There's a lot to like about Golang, here are some of the main reasons why Golang
 
 <h5>Good reads</h5>
 
+https://tour.golang.org/list
+
 https://www.pluralsight.com/blog/software-development/golang-get-started
 
 https://medium.com/exploring-code/why-should-you-learn-go-f607681fad65
