@@ -27,6 +27,7 @@ https://www.pluralsight.com/blog/software-development/golang-get-started
 
 https://medium.com/exploring-code/why-should-you-learn-go-f607681fad65
 
+https://go101.org/article/101.html
 
 https://code.tutsplus.com/tutorials/12-indispensable-go-packages-and-libraries--cms-29008
  
