@@ -46,7 +46,7 @@ package main
 func main() {
     var i int
     for i < 5 {
-        println(i) // println comes builtin with golang, it is a more basic versio of fmt.Println()
+        println(i) 
         i++      
     }
 }
@@ -275,6 +275,61 @@ cat 7
 hamster 1
 ```
 
-If you're not interested in the ages, you can just do:
+If you're only interested in the map's value, you can just do:
+
+```
+package main
+
+func main() {
+        pets := map[string]int{"dog": 4, "cat": 7, "hamster": 1}
+	for _, ageOfPet := range(pets) {
+		println(ageOfPet)
+	}
+	
+}
+```
+
+This outputs:
+
+```
+4
+7
+1
+```
+
+If however you're only interested in the map's key, you can just do:
+
+```
+package main
+
+func main() {
+        pets := map[string]int{"dog": 4, "cat": 7, "hamster": 1}
+	for typeOfPet, _ := range(pets) {
+		println(typeOfPet)
+	}
+	
+}
+```
+
+or using an even more shorthand syntax, you can do:
+
+```go
+package main
+
+func main() {
+        pets := map[string]int{"dog": 4, "cat": 7, "hamster": 1}
+	for typeOfPet := range(pets) {
+		println(typeOfPet)
+	}
+	
+}
+```
 
 
+both of these examples, outputs:
+
+```
+dog
+cat
+hamster
+```
