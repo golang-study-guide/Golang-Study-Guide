@@ -11,3 +11,15 @@ func main() {
 }
 ```
 
+this outputs:
+
+```
+attempt connection to DB
+panic: failed to connect
+```
+
+
+also see: https://golang.org/doc/effective_go.html#panic
+
+
+
