@@ -184,7 +184,7 @@ Here we remove the "; ;" syntax and initialize the counter variable outside the 
 package main
 
 func main() {
-        var i int
+    var i int
 	for {
 		println(i)
 		i++

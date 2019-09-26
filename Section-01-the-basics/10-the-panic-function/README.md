@@ -5,9 +5,18 @@ go app isn't designed:
 package main
 
 func main() {
-    println("attempt connection to DB")  // "println" comes builtin with golang, it is a more basic versio of fmt.Println()
-    panic("failed to connect to db")
-    println("perform CRUD operations with the DB")
+
+    var i int
+	for {
+        println("about to process: ", i) // "println" comes builtin with golang, it is a more basic versio of fmt.Println()
+        if i == 3 {
+            panic("I don't like number 3!")
+
+        }
+
+		i++
+	}
+
 }
 ```
 
