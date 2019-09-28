@@ -85,7 +85,24 @@ func main() {
 }
 ```
 
-Golang comes include with a [Standard Library](https://golang.org/pkg/#stdlib) of packages, of which the [fmt](https://golang.org/pkg/fmt/) package is one of them. 
+Golang comes include with a [Standard Library](https://golang.org/pkg/#stdlib) of packages, of which the [fmt](https://golang.org/pkg/fmt/) package is one of them. You can get help info for fmt like this:
+
+```bash
+$ go doc fmt
+package fmt // import "fmt"
+
+Package fmt implements formatted I/O with functions analogous to C's printf
+and scanf. The format 'verbs' are derived from C's but are simpler.
+...
+
+$ go doc fmt.Println
+func Println(a ...interface{}) (n int, err error)
+    Println formats using the default formats for its operands and writes to
+    standard output. Spaces are always added between operands and a newline is
+    appended. It returns the number of bytes written and any write error
+    encountered.
+
+```
 
 
 
