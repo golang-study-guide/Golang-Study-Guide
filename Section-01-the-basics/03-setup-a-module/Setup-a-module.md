@@ -47,7 +47,7 @@ $ go run main.go
 hello world
 ```
 
-the [go run](https://golang.org/pkg/cmd/go/internal/run/) command specificially loads and runs all *.go files that have the first line set to  'package main'. Once all the 'package main' files are collated, `go run` then looks for the 'func main()' function which is the starting point of your code. 
+the [go run](https://golang.org/pkg/cmd/go/internal/run/) command specificially loads and runs all *.go files that have the first line set to 'package main'. Once all the 'package main' files are collated, `go run` then looks for the 'func main()' function which is the starting point of your code. 
 
 
 You can create it as an executable binary and then run that:
@@ -61,6 +61,22 @@ hello world
 Note: here the binary's name is taken from main.go, but without the .go extension. 
 
 
+## Packages  Overview
+
+There are 2 types of packages
+
+1. main package
+2. library package
+
+### library packages
+A library package is essentially a bunch of go source code that get's called by other main/library packages. The 2 main characteristics of a library package:
+
+1. If the packages root folder is called 'users', then the *.go files directly under that folder, start with the line 'package users'
+2. they don't have the 'func main()' function, i.e no entry point. Therefore you can't create an executable from a library package. 
+
+However for now we will be looking at main packages.  
+
+### main packages
 You can write all your go code into a single *.go file. However that single file can get quite big and difficult to read, which is why it's best practice to break your code into several smaller *.go files.
 
 All the *.go files that forms part of your main go application, must have it's first line set as `package main`. This is the [package declaration](https://golang.org/doc/code.html#PackageNames) and this tells golang which *.go forms part of your main go application. Among these main files, exactly one file must contain the 'func main()' function. This file is that starting point of your go app. By convention this starting-point file is named as one of following:
