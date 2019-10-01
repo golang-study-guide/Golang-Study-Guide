@@ -101,6 +101,8 @@ func main() {
 }
 ```
 
+## The standard library
+
 Golang comes include with a [Standard Library](https://golang.org/pkg/#stdlib) of packages, of which the [fmt](https://golang.org/pkg/fmt/) package is one of them. You can get help info for fmt like this:
 
 ```bash
