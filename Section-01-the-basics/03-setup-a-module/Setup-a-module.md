@@ -50,15 +50,34 @@ hello world
 the [go run](https://golang.org/pkg/cmd/go/internal/run/) command specificially loads and runs all *.go files that have the first line set to 'package main'. Once all the 'package main' files are collated, `go run` then looks for the 'func main()' function which is the starting point of your code. 
 
 
-You can create it as an executable binary and then run that:
+You can compile your code into an executable binary and then run that:
 
 ```bash
 $ go build main.go
+$ ll -lh main
+-rwxr-xr-x  1 schowdhury  staff   2.0M  9 Oct 20:36 main
+$ file main
+main: Mach-O 64-bit executable x86_64
 $ ./main
 hello world
 ```
 
-Note: here the binary's name is taken from main.go, but without the .go extension. 
+The binary's name is taken from main.go, but without the .go extension. 
+
+The binary is also quite big, at 2MB. That's because it's designed to run as a standalone without needing to depend on any external libraries. 
+
+This build command will only work as long as:
+
+- your project defines a package called 'main'
+- your project has exactly one 'func main(){...}' definition. 
+
+the above binary by default will run on macOS based OS (Darwin). But's [easy to build for other distros/architecture](https://golang.org/doc/install/source#environment). E.g. if you want to build for Linux with 64 architecture, then you specify those setting as command line variables:
+
+```bash
+$ GOOS=linux GOARCH=amd64 go build .
+$ file gsg_hello_world
+gsg_hello_world: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, not stripped
+```
 
 
 ## Packages  Overview
@@ -71,7 +90,7 @@ There are 2 types of packages
 ### library packages
 A library package is essentially a bunch of go source code that get's called by other main/library packages. The 2 main characteristics of a library package:
 
-1. If the packages root folder is called 'users', then the *.go files directly under that folder, start with the line 'package users'
+1. If the packages root folder is called 'users', then the *.go files directly under that folder, start with the line `package users`
 2. they don't have the 'func main()' function, i.e no entry point. Therefore you can't create an executable from a library package. 
 
 However for now we will be looking at main packages.  
@@ -86,7 +105,7 @@ All the *.go files that forms part of your main go application, must have it's f
 
 
 
-A golang project is made up of [packages](https://golang.org/ref/spec#Packages), and each package in turn can make use of other packages. [println](https://golang.org/pkg/builtin/#println) is one of a [small handful of golang functions that comes builtin](https://golang.org/pkg/builtin) with golang. println is quite a primitive function, and that's why it's more common to use the more feature-rich alternative, Println, which comes as part of the fmt package:
+A golang project is made up of [packages](https://golang.org/ref/spec#Packages), and each package in turn can make use of other packages. [println](https://golang.org/pkg/builtin/#println) is one of a [small handful of golang functions that comes builtin](https://golang.org/pkg/builtin) with golang. println is quite a primitive function, and that's why it's more common to use the more feature-rich alternative, Println, which comes as part of the `fmt` package:
 
 
 ```go
@@ -117,10 +136,22 @@ $ go doc fmt.Println
 func Println(a ...interface{}) (n int, err error)
     Println formats using the default formats for its operands and writes to
     standard output. Spaces are always added between operands and a newline is
-    appended. It returns the number of bytes written and any write error
-    encountered.
+...
 
 ```
+
+There's a html formatted docs that you can access by running:
+
+```
+$ godoc -http=:8001
+```
+or you can omit the = sign:
+```
+$ godoc -http :8001
+```
+
+then open up web browser to http://localhost:8001
+
 
 
 
@@ -134,18 +165,72 @@ $ go run github.com/Sher-Chowdhury/gsg_hello_world
 hello world
 ```
 
-You can also build the code from source:
+As explained above, you can also build the code from source:
 
 ```bash
 $ go build .
+$ file gsg_hello_world
+gsg_hello_world: Mach-O 64-bit executable x86_64
 $ ./gsg_hello_world
 hello world
 ```
 
+This time the binary's name is taken from the go.mod file. 
+
 
 That's why it's important to name your module after your github repo's url. 
 
+The `go run` command actually runs the `go build` command to temporary build a binary, then execute that binary, then deletes the binary. 
 
 
 
+## Using external packages
 
+Let's say you have:
+
+```
+package main
+
+// need to first run: go get github.com/fatih/color 
+import (
+    "github.com/fatih/color"
+)
+ 
+func main() {
+    color.Red("Roses are red")
+    color.Blue("Violets are blue"
+}
+```
+
+If we try to build/run this, the external package gets downloaded and placed in our common library folder:
+
+```
+$ go run .
+go: finding github.com/fatih/color v1.7.0
+go: finding github.com/mattn/go-isatty v0.0.10
+go: finding github.com/mattn/go-colorable v0.1.4
+go: finding github.com/mattn/go-isatty v0.0.8
+go: finding golang.org/x/sys v0.0.0-20191008105621-543471e840be
+go: finding golang.org/x/sys v0.0.0-20190222072716-a9d3bda3a223
+go: downloading github.com/fatih/color v1.7.0
+go: extracting github.com/fatih/color v1.7.0
+go: downloading github.com/mattn/go-isatty v0.0.10
+go: downloading github.com/mattn/go-colorable v0.1.4
+go: extracting github.com/mattn/go-isatty v0.0.10
+go: extracting github.com/mattn/go-colorable v0.1.4
+Roses are red
+Violets are blue
+```
+
+Where our dependencies are stored somewhere in:
+
+```
+$ go env GOPATH
+/Users/schowdhury/go
+```
+
+You can empty out this cache:
+
+```
+$ go clean --modcache
+```
