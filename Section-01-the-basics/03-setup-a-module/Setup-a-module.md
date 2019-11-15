@@ -234,3 +234,7 @@ You can empty out this cache:
 ```
 $ go clean --modcache
 ```
+
+## Useful links
+
+https://medium.com/@ckeyes88/go-modules-in-real-life-87a21fb4d8aa

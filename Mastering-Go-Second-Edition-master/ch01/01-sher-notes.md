@@ -1,15 +1,15 @@
-page 20
+## page 20
 printing to standard output can be done using
 
-
+```
 fmt.Println()  // this adds newline at the end 
 fmt.Print()    // this doesn't add newline
+```
+
 
 There's also:
 
 fmt.Printf()
-
-All three above are used to output to screen. 
 
 This is like fmt.Print() but let's you do formatting, which in turn means write more code:
 
@@ -31,13 +31,16 @@ func main() {
 }
 ```
 
+All three above are used to output to screen. 
+
+
 https://play.golang.org/p/1bK76lMVPhM
 
 
 
 
 
-page 22
+## page 22
 
 there's also Sprintf, Sprint, and Sprintln
 
@@ -63,7 +66,32 @@ func main() {
 https://play.golang.org/p/m_hsSuQCbKw
 
 
-Similarly we have Fprintf, Fprint, and Fprintln
+Similarly we have Fprintf, Fprint, and Fprintln:
+
+```go
+package main
+
+import (
+    "fmt"
+    "os"
+)
+
+
+func main() {
+
+	name := "Peter Parker"
+	city := "New York"
+	age := 18
+
+	fmt.Fprintln(os.Stdout, "my name is", name, "I live in", city, "I am", age, "years old")
+	fmt.Fprintln(os.Stdout, "")
+	fmt.Fprint(os.Stdout, "my name is", name, "I live in", city, "I am", age, "years old")
+        fmt.Fprintln(os.Stdout, "")
+	fmt.Fprintf(os.Stdout, "my name is %s", name)
+}
+```
+https://play.golang.org/p/0TPfoxpZ-_S
+
 
 
 ## page 23
