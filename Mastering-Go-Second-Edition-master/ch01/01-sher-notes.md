@@ -254,3 +254,67 @@ it will still output message to /var/log/messages too.
 
 
 
+Error handling has recently changed in go, see this blog announcement - https://blog.golang.org/go1.13-errors
+
+
+functions are often written to return more than one output - https://play.golang.org/p/jn1L528hFmR
+
+It's best practice to have the last output to hold an error value (if any):
+
+```go
+package main
+
+import (
+	"fmt"
+	"errors" 
+)
+
+func compareNumbers(a int, b int) (string, error) {
+
+	if a == b {
+		result := "the 2 numbers are identical"
+		return result, nil
+	} else {
+	        error_message := errors.New("The 2 numbers don't match")
+		return "no match", error_message
+	}
+}
+
+func main() {
+
+	comparison_1, err := compareNumbers(10, 10)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(comparison_1)
+	}
+
+	comparison_2, err := compareNumbers(5, 10)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(comparison_2)
+	}
+	
+	// This is a more condensed way to write an if-statement.  
+	if result1, err := compareNumbers(1, 10) ; err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(result1)
+	}
+}
+```
+
+https://play.golang.org/p/5Ls9qhyFyXC
+
+https://hackmongo.com/post/three-golang-error-types/
+
+
+Here's a very common error-handling used all the time in golang:
+
+```go
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(10)
+	}
+```
