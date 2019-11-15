@@ -186,3 +186,71 @@ func main() {
 }
 ```
 https://yourbasic.org/golang/log-to-file/
+
+
+
+## ????
+
+About Log.Fatal
+
+Sometimes you'll want to issue a log message and then straight away exit the program. That can be done using log.Fatal. 
+
+
+```go
+package main
+
+import (
+	"fmt"
+	"log"
+	"log/syslog"
+)
+
+func main() {
+	sysLog, _ := syslog.New(syslog.LOG_ALERT|syslog.LOG_SYSLOG, "Something really bad has happened!!!")
+
+	log.SetOutput(sysLog)
+
+	// on a CentOS vm, this sends a log entry to /var/log/messages with the message "Something really bad has happened!!!"
+	log.Fatal(sysLog)
+	fmt.Println("The above line will terminate this program before this line has a chance to get executed")
+}
+```
+
+a quick way to try this out is by running:
+
+```
+$ vagrant init bento/centos-8
+$ vagrant up
+$ vagrant ssh
+$ sudo su -
+$ go run /vagrant/logFatal-sher.go
+exit status 1
+grep -ir "Something really bad has happened" /var/log
+/var/log/messages:Nov 15 14:55:22 localhost journal[12270]: Something really bad has happened!!![12270]: 2019/11/15 14:55:22 &{41 Something really bad has happened!!! localhost.localdomain   {0 0} 0xc00000c100}
+```
+
+log.Fatal() only gives the output "exit status 1".
+
+However if you want to still terminate straight away but also give slightly more verbose output, then use log.Panic() instead, and all else being the same. The output will then be something like:
+
+```
+go run logPanic-sher.go
+panic: &{41 Something really bad has happened!!! localhost.localdomain   {0 0} 0xc00000c100}
+
+goroutine 1 [running]:
+log.Panic(0xc000045f78, 0x1, 0x1)
+	/usr/lib/golang/src/log/log.go:326 +0xc0
+main.main()
+	/root/logPanic-sher.go:15 +0xa0
+exit status 2
+```
+
+it will still output message to /var/log/messages too. 
+
+
+
+
+## Page ???? - Error handling
+
+
+

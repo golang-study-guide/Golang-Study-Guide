@@ -8,17 +8,18 @@ func main() {
 
     var i int
 	for {
-        println("about to process: ", i) // "println" comes builtin with golang, it is a more basic versio of fmt.Println()
+        println("attempt connection to DB.", i) // "println" comes builtin with golang, it is a more basic versio of fmt.Println()
         if i == 3 {
-            panic("I don't like number 3!")
+            panic("failed to connect!")
 
         }
-
 		i++
 	}
 
 }
 ```
+
+https://play.golang.org/p/567h0nrIYwl
 
 this outputs:
 
