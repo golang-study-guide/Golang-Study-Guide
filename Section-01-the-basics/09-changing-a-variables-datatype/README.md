@@ -2,7 +2,7 @@ You can change a variable's datatype by using the T(v) syntax, where "T" is stri
 
 
 
-```
+```go
 package main
 
 import (
