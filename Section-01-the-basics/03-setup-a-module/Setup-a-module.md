@@ -4,9 +4,9 @@ Before you can start writing Golang code. You first need to set up a module. A m
 Create a new empty git repo and clone it. In my case I created and cloned:
 
 ```bash
-$ git clone github.com:Sher-Chowdhury/gsg_hello_world.git
-$ cd gsg_hello_world/
-$ ls
+git clone git@github.com:Sher-Chowdhury/gsg_hello_world.git
+cd gsg_hello_world/
+ls
 ```
 
 At this stage this repo is empty. Next we run the "Go module initialisation" command inside this repo:
@@ -64,12 +64,27 @@ hello world
 
 The binary's name is taken from main.go, but without the .go extension. 
 
+That means, you can give the main.go a different name, e.g.:
+
+```
+$ mv main.go hello.go
+$ go run hello.go
+hello world
+╰➤ go build hello.go
+╰➤ ./hello
+hello world
+```
+
+Basically, 'main.go' is juste a naming convention. 
+
+
+
 The binary is also quite big, at 2MB. That's because it's designed to run as a standalone without needing to depend on any external libraries. 
 
 This build command will only work as long as:
 
-- your project defines a package called 'main'
-- your project has exactly one 'func main(){...}' definition. 
+- your project defines a package called 'main', i.e. you have one or more .go files that starts with the line "package main". This helps to tell golang which files makes up the core application of this project, rather than secondary library *.go files.
+- your project has exactly one 'func main(){...}' definition, and the file containing this function needs to start with the line "package main".
 
 the above binary by default will run on macOS based OS (Darwin). But's [easy to build for other distros/architecture](https://golang.org/doc/install/source#environment). E.g. if you want to build for Linux with 64 architecture, then you specify those setting as command line variables:
 
@@ -160,19 +175,19 @@ then open up web browser to http://localhost:8001
 Now if you want to run this module on another workstation, then you first need to commit and push this to github, and on another workstation, you just have to run:
 
 ```bash
-$ go get github.com/Sher-Chowdhury/gsg_hello_world
-$ go run github.com/Sher-Chowdhury/gsg_hello_world
-hello world
+go get github.com/Sher-Chowdhury/gsg_hello_world
+go run github.com/Sher-Chowdhury/gsg_hello_world
+> hello world
 ```
 
 As explained above, you can also build the code from source:
 
 ```bash
-$ go build .
-$ file gsg_hello_world
-gsg_hello_world: Mach-O 64-bit executable x86_64
-$ ./gsg_hello_world
-hello world
+go build .
+file gsg_hello_world
+> gsg_hello_world: Mach-O 64-bit executable x86_64
+./gsg_hello_world
+> hello world
 ```
 
 This time the binary's name is taken from the go.mod file. 
@@ -225,8 +240,8 @@ Violets are blue
 Where our dependencies are stored somewhere in:
 
 ```
-$ go env GOPATH
-/Users/schowdhury/go
+go env GOPATH
+> /Users/schowdhury/go
 ```
 
 You can empty out this cache:
