@@ -1,9 +1,9 @@
-In golang, there is only the for-loop. 
+In golang, there is only the for-loop.
 
-I.e. there are no such thing as do-loops, while-loops, until-loops,..etc. 
+I.e. there are no such thing as do-loops, while-loops, until-loops,..etc.
 
 
-There are 4 types of for-loops, 
+There are 4 types of for-loops,
 
 - loop till condition
 - loop till condition with post clause
@@ -21,7 +21,7 @@ import (
 func main() {
     var i int  // this defaults to 0
     for i < 5 {
-        fmt.Println("i is set to: ", i)      
+        fmt.Println("i is set to: ", i)
     }
 }
 ```
@@ -46,8 +46,8 @@ package main
 func main() {
     var i int
     for i < 5 {
-        println(i) 
-        i++      
+        println(i)
+        i++
     }
 }
 ```
@@ -75,7 +75,7 @@ func main() {
         if i == 2 {
           break
         }
-        i++      
+        i++
     }
 }
 ```
@@ -116,7 +116,7 @@ this outputs:
 ```
 
 
-## loop with clauses 
+## loop with clauses
 
 [loop with clauses](https://tour.golang.org/flowcontrol/1)
 
@@ -130,11 +130,11 @@ func main() {
 	for i := 0; i < 5; i++ {
 		println(i)
 	}
-	
+
 }
 ```
 
-In this scenario, the variable i only exists inside the scope of the for loop. 
+In this scenario, the variable i only exists inside the scope of the for loop.
 
 this outputs:
 
@@ -158,7 +158,7 @@ func main() {
 		println(i)
 		i++
 	}
-	
+
 }
 ```
 
@@ -189,7 +189,7 @@ func main() {
 		println(i)
 		i++
 	}
-	
+
 }
 ```
 
@@ -219,7 +219,7 @@ func main() {
 	for i:=0; i<len(mySlice); i++ {
 		println(mySlice[i])
 	}
-	
+
 }
 ```
 
@@ -241,7 +241,7 @@ func main() {
 	for myIndex, myValue := range(mySlice) {
 		println(myIndex, myValue)
 	}
-	
+
 }
 ```
 
@@ -263,7 +263,7 @@ func main() {
 	for typeOfPet, ageOfPet := range(pets) {
 		println(typeOfPet, ageOfPet)
 	}
-	
+
 }
 ```
 
@@ -277,7 +277,7 @@ hamster 1
 
 If you're only interested in the map's value, you can just do:
 
-```
+```go
 package main
 
 func main() {
@@ -285,7 +285,7 @@ func main() {
 	for _, ageOfPet := range(pets) {
 		println(ageOfPet)
 	}
-	
+
 }
 ```
 
@@ -299,31 +299,33 @@ This outputs:
 
 If however you're only interested in the map's key, you can just do:
 
-```
+```go
 package main
 
 func main() {
-        pets := map[string]int{"dog": 4, "cat": 7, "hamster": 1}
+    pets := map[string]int{"dog": 4, "cat": 7, "hamster": 1}
 	for typeOfPet, _ := range(pets) {
 		println(typeOfPet)
 	}
-	
+
 }
 ```
+https://play.golang.org/p/_co2jEt8tqJ
 
-or using an even more shorthand syntax, you can do:
+or using an even more shorthand syntax (which is slightly more difficutl to read), you can do:
 
 ```go
 package main
 
 func main() {
-        pets := map[string]int{"dog": 4, "cat": 7, "hamster": 1}
+    pets := map[string]int{"dog": 4, "cat": 7, "hamster": 1}
 	for typeOfPet := range(pets) {
 		println(typeOfPet)
 	}
-	
+
 }
 ```
+https://play.golang.org/p/WKxHQCsx6q0
 
 
 both of these examples, outputs:
