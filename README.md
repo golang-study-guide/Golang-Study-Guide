@@ -22,4 +22,5 @@ git clone git@github.com:Sher-Chowdhury/gsg_slices_pointers_structs_demo.git
 git clone git@github.com:Sher-Chowdhury/gsg_maps.git
 git clone git@github.com:Sher-Chowdhury/gsg_slices.git
 git clone git@github.com:Sher-Chowdhury/gsg_arrays.git
+git clone git@github.com:Sher-Chowdhury/gsg_error_handling.git
 ```
