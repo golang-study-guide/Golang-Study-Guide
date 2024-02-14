@@ -429,9 +429,39 @@ If we commented out ch1 and uncommented ch2, then the ch2 case's statement gets 
 However if you uncomment both ch1 and ch2, then one of the matching case statement get's triggered randomly, with 50:50 chance! So you have to avoid ending up with that scenario in your code, otherwise things will end up getting really unpredictable.  
 
 
-Now here's a for-loop example:
+Now here's a [for-loop example(https://go.dev/play/p/J9nh9Ubiqb3)]:
 
+```golang
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var ch = make(chan string, 3)
+
+	// ignoring the index value here.
+	for _, v := range [...]string{"Monday", "Tuesday", "Wednesday"} {
+		ch <- v
+	}
+
+	// Have to close the channel here, otherwise, the for-loop is none the wiser, and try to pull down more data
+	// from the channel after the channel has been drained, and it'll end up throwing a "deadlock" error.
+	close(ch)
+
+	// notice no index value here, That's a special case, when it comes to looping through channels
+	for msg := range ch {
+		fmt.Println(msg)
+	}
+}
 ```
 
+this outputs:
 
+```
+go run main.go
+Monday
+Tuesday
+Wednesday
 ```
