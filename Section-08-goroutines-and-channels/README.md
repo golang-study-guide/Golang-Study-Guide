@@ -309,6 +309,7 @@ That's because we never reach the print line, because the `main` function is blo
 
 ## Directional channels
 
+Here's [an example](https://go.dev/play/p/SQjJi90dEdJ) containing 2 goroutines:
 
 ```go
 package main
@@ -340,3 +341,39 @@ This outputs:
 go run main.go
 message
 ```
+
+The first goroutine receives data from the channel (reciever function), whereas the second routine sends data to the channel (sender function). The syntax for the two goroutine's functin's input paramters, can be changed to make it a little more clearer, whether a function is a sender or receiver function:
+
+```go
+
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	var ch = make(chan string)     // bi-directional
+
+	go func(ch <-chan string) {    // recieve-only syntax
+		fmt.Println(<-ch)
+	}(ch)
+
+	go func(ch chan<- string) {   // send-only syntax
+		ch <- "message"
+	}(ch)
+
+	time.Sleep(1000 * time.Millisecond)
+
+}
+```
+
+The [above example](https://go.dev/play/p/E3aBq5bRfCq), gives the same output as before:
+
+```
+go run main.go
+message
+```
+
+These 2 examples are functionally identical to eachother, the only differ is that the second examaple's syntax is slightly more easier to read. 
