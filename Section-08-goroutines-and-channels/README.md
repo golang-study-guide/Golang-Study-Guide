@@ -280,3 +280,63 @@ However, you can set a cache size (buffer) in your channel, so that it sender ca
 ```go
 var ch = make(chan string, 1)
 ```
+
+Here's [another example](https://go.dev/play/p/Mb_BFMLWOfy) (this time not using any goroutines):
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var ch = make(chan string)
+
+	ch <- "message"
+
+	fmt.Println(<- ch)	
+}
+```
+
+this outputs the error:
+
+```
+fatal error: all goroutines are asleep - deadlock!
+```
+
+That's because we never reach the print line, because the `main` function is blocked as soon an item is put onto the channel. 
+
+## Directional channels
+
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	var ch = make(chan string)
+
+	go func(ch chan string) {
+		fmt.Println(<-ch)
+	}(ch)
+
+	go func(ch chan string) {
+		ch <- "message"
+	}(ch)
+
+	time.Sleep(1000 * time.Millisecond)
+
+}
+```
+
+This outputs:
+
+```
+go run main.go
+message
+```
