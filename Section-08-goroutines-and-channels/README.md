@@ -1,3 +1,6 @@
+Concurrency (parrallel execution) is achieved in Golang using a combination of Goroutines and Channels. 
+
+
 This is a really good course - https://www.pluralsight.com/courses/go-programming-concurrent
 
 Golang by default will executed lines in code in the order outlined in your code. 
@@ -377,3 +380,50 @@ message
 ```
 
 These 2 examples are functionally identical to eachother, the only differ is that the second examaple's syntax is slightly more easier to read. 
+
+
+## Control flows
+
+Channels have special behaviours when used in conjunction with:
+
+- `select` statement - (note, this is not the same thing as a `switch` statement. `select` statements are specifically for use with goroutines/channels)
+- for-loops
+
+
+Here's [an example](https://go.dev/play/p/hXGWQjA9ZBV) of the select statement:
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var ch1 = make(chan int, 1)    // using buffer here to prevent blocking happening further down.
+	var ch2 = make(chan string, 1) // using buffer to prevent blocking happening further down.
+
+	ch1 <- 999
+	// ch2 <- "message"
+
+	select {
+	case msg := <-ch1:
+		fmt.Printf("Received message from channel ch1, the message is: %d.\n", msg)
+	case msg := <-ch2:
+		fmt.Printf("Received message from channel ch2, the message is: %s.\n", msg)
+	default:
+		fmt.Println("None of the channels received any messages")
+	}
+}
+```
+
+This outputs:
+
+```
+go run main.go
+Received message from channel ch1, the message is: 999.
+```
+
+If we commented out ch1 and uncommented ch2, the the other case statement get's triggered. 
+
+However if you uncomment both ch1 and ch2, then one of the matching case statement get's triggered randomly, with 50:50 chance! So you have to avoid ending up with that scenario in your code. 
